@@ -19,7 +19,7 @@ public class MainClass {
         student.Collage = "testacb";
         System.out.println(student.Collage);
 
-        ArrayList<Student> studentArrayList = new ArrayList<>();
+        StudentArrayList<Student> studentArrayList = new StudentArrayList();
         File newFile = new File(FILE_PATH);
         if (newFile.exists()) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -41,8 +41,8 @@ public class MainClass {
                     newStudent.setStatus(resultSplitComma[5]);
                     studentArrayList.add(newStudent);
                 }
-                for (Student student1 : studentArrayList) {
-                    student1.getInfo();
+                for (Student studentNew : studentArrayList.get()) {
+                    studentNew.getInfo();
                 }
             }
             catch (IOException e) {
@@ -59,7 +59,7 @@ public class MainClass {
                     case 1:
                         System.out.println("Input id");
                         int id = input.nextInt();
-                        for (Student studentNew : studentArrayList) {
+                        for (Student studentNew : studentArrayList.get()) {
                             if (studentNew.getId() == id) {
                                 System.out.println("Input id");
                                 id = input.nextInt();
@@ -117,7 +117,7 @@ public class MainClass {
                         break;
                     case 2:
                         System.out.println("Sort following point");
-                        Collections.sort(studentArrayList, new Comparator<Student>() {
+                        Collections.sort(studentArrayList.get(), new Comparator<Student>() {
                             @Override
                             public int compare(Student studentOne, Student studentTwo) {
                                 if (studentOne.averagePoint() < studentTwo.averagePoint()) {
@@ -131,7 +131,7 @@ public class MainClass {
                                 }
                             }
                         });
-                        for (Student students : studentArrayList) {
+                        for (Student students : studentArrayList.get()) {
                             students.getInfo();
                         }
                         break;
@@ -152,15 +152,15 @@ public class MainClass {
                     case 4:
                         float point = 0;
                         int i = 0;
-                        if (studentArrayList.isEmpty()) {
+                        if (studentArrayList.get().isEmpty()) {
                             System.out.println("No data in file");
                         }
-                        for (Student students : studentArrayList) {
+                        for (Student students : studentArrayList.get()) {
                             if (students.averagePoint() > point) {
                                 point = students.averagePoint();
                             }
                         }
-                        for (Student students : studentArrayList) {
+                        for (Student students : studentArrayList.get()) {
                             if (students.averagePoint() == point) {
                                 students.getInfo();
                             }
